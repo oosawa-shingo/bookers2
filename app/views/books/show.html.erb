@@ -1,0 +1,70 @@
+<div class="mb-3">
+  <%= flash[:notice] %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+        <%= image_tag @book.user.get_profile_image(100,100) %>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>name</th>
+              <th><%= @book.user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= @book.user.introduction %></th>
+            </tr>
+          </tbody>
+        </table>
+      <!--<#% if current_user.id == @book.user.id %>-->
+        <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      <!--<#% else %>-->
+      <!--  <#%= link_to "/users/#{@book.user.id}", class: "btn btn-outline-secondary btn-block" do %>-->
+      <!--    <i class="fas fa-user-cog"></i>-->
+      <!--  <#% end %>-->
+      <!--<#% end %>-->
+      <%= render 'books_list', book: @newbook %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <td>
+                <div>
+                <%= link_to "/users/#{@book.user.id}" do %>
+                  <%= image_tag @book.user.get_profile_image(80,80) %>
+                  <p><%= @book.user.name%></p>
+                <% end %>
+                </div>
+              </td>
+              <td>
+                <%= link_to @book_path do %>
+                  <%= @book.title %>
+                <% end %>
+              </td>
+              <td><%= @book.body %></td>
+
+              <td>
+                <% if @book.user == current_user %>
+                  <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success btn-sm" %>
+                <% end %>
+              </td>
+
+              <td>
+                <% if @book.user == current_user %>
+                  <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

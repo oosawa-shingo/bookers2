@@ -1,0 +1,40 @@
+<div class="mb-3">
+  <%= flash[:notice] %>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <%= image_tag @user.get_profile_image(100,100) %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+      <!--<#% if current_user.id == @user.id %>-->
+        <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      <!--<#% else %>-->
+      <!--  <#%= link_to "/users/#{@user.id}", class: "btn btn-outline-secondary btn-block" do %>-->
+      <!--    <i class="fas fa-user-cog"></i>-->
+      <!--  <#% end %>-->
+      <!--<#% end %>-->
+      <%= render 'books/books_list', book: @newbook %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <%= render 'books/books', books: @books %>
+    </div>
+
+  </div>
+</div>

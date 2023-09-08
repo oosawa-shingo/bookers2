@@ -1,0 +1,43 @@
+<div class="mb-3">
+  <%= flash[:notice] %>
+</div>
+
+<div class="container">
+  <% if @newbook.errors.any? %>
+    <h3><%= @newbook.errors.count %>error prohibited this obj from being saved:</h3>
+      <ul>
+        <% @newbook.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-3">
+    <h2>User info</h2>
+      <% if user_signed_in? %>
+      <%= image_tag current_user.get_profile_image(100,100) %>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>name</th>
+              <th><%= current_user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= current_user.introduction %></th>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to "/users/#{current_user.id}/edit", class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+        <%= render 'books_list', book: @newbook %>
+        <% end %>
+  </div>
+
+  <div class="col-md-8 offset-md-1">
+    <%= render 'books/books', books: @books %>
+  </div>
+</div>
+
