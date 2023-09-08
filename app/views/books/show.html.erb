@@ -19,15 +19,9 @@
             </tr>
           </tbody>
         </table>
-      <!--<#% if current_user.id == @book.user.id %>-->
         <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block" do %>
           <i class="fas fa-user-cog"></i>
         <% end %>
-      <!--<#% else %>-->
-      <!--  <#%= link_to "/users/#{@book.user.id}", class: "btn btn-outline-secondary btn-block" do %>-->
-      <!--    <i class="fas fa-user-cog"></i>-->
-      <!--  <#% end %>-->
-      <!--<#% end %>-->
       <%= render 'books_list', book: @newbook %>
     </div>
 
